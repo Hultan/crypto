@@ -14,8 +14,6 @@ import (
 
 const keyPath = "/home/per/.softteam_key"
 
-type Crypto struct{}
-
 func getKey() ([]byte, error) {
 	// Open file
 	file, err := os.Open(keyPath)
@@ -40,7 +38,7 @@ func getKey() ([]byte, error) {
 // https://stackoverflow.com/questions/18817336/golang-encrypting-a-string-with-aes-and-base64
 
 // Encrypt : Encrypts a string
-func (c Crypto) Encrypt(plainText string) (string, error) {
+func Encrypt(plainText string) (string, error) {
 	key, err := getKey()
 	if err != nil {
 		return "", err
@@ -63,7 +61,7 @@ func (c Crypto) Encrypt(plainText string) (string, error) {
 }
 
 // Decrypt : Decrypts an encrypted string
-func (c Crypto) Decrypt(encryptedString string) (string, error) {
+func Decrypt(encryptedString string) (string, error) {
 	key, err := getKey()
 	if err != nil {
 		return "", err
